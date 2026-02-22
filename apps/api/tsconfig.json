@@ -3,10 +3,15 @@
     "module": "ES2022",
     "moduleResolution": "Bundler",
     "target": "ES2022",
-    "rootDir": "src",
+    "rootDir": "../..",
     "outDir": "dist",
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@forum/shared": ["../../package/shared/src"],
+      "@forum/shared/*": ["../../package/shared/src/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "../../package/shared/src"]
 }

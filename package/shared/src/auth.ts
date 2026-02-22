@@ -1,0 +1,32 @@
+import z from 'zod';
+
+export const RegisterRequestSchema = z.object({
+  username: z.string().min(3).max(30),
+  email: z.string().trim().toLowerCase().pipe(z.email()),
+  password: z.string().min(8).max(200),
+});
+export type RegisterRequest = z.infer<typeof RegisterRequestSchema>;
+
+export const RegisterResponseSchema = z.object({
+  id: z.string(),
+  username: z.string(),
+  email: z.string(),
+});
+export type RegisterResponse = z.infer<typeof RegisterResponseSchema>;
+
+
+export const LoginRequestSchema = z.object({
+  email: z.string().pipe(z.email()),
+  password: z.string().min(1),
+});
+export type LoginRequest = z.infer<typeof LoginRequestSchema>;
+
+export const LoginResponseSchema = z.object({
+  token: z.string(),
+  user: z.object({
+    id: z.string(),
+    username: z.string(),
+    email: z.string(),
+  }),
+});
+export type LoginResponse = z.infer<typeof LoginResponseSchema>;

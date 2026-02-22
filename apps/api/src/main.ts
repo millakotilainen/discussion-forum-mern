@@ -16,6 +16,5 @@ app.use(errorHandler);
 
 const port = Number(process.env.PORT ?? 3001);
 app.listen(port, () => {
-  // Keep logging minimal and structured
   console.log(JSON.stringify({ msg: 'api_started', port }));
 });
