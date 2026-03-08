@@ -1,9 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
 import { RegisterRequestSchema } from "@forum/shared";
-import { RegisterUser } from "../../../application/use-cases/register-user";
-
-const tempRepository: any = {};
-const tempHasher: any = {};
+import { RegisterUser } from "src/application/use-cases/register-user";
+import tempRepository from "src/infrastructure/dev/in-memory-user-repository";
+import tempHasher from "src/infrastructure/dev/mock-password-hasher";
 
 const registerUser = new RegisterUser(tempRepository, tempHasher);
 
