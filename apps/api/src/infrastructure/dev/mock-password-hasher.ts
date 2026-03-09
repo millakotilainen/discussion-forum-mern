@@ -1,7 +1,7 @@
-const tempHasher = {
+const mockPasswordHasher = {
     async hash(password: string) {
-        return "hashed-" + password;
+        return `hashed-${password}`;
     },
 };
 
-export default tempHasher;
+export default mockPasswordHasher;

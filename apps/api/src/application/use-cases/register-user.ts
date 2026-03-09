@@ -22,6 +22,14 @@ export interface PasswordHasher {
     hash(password: string): Promise<string>;
 }
 
+export class EmailAlreadyInUseError extends Error {
+    constructor() {
+        super("Email already in use");
+        this.name = "EmailAlreadyInUseError";
+    }
+}
+
+
 export class RegisterUser {
     constructor(
         private readonly userRepository: UserRepository,
@@ -31,7 +39,7 @@ export class RegisterUser {
     async execute(data: RegisterRequest): Promise<RegisterResponse> {
         const existingUser = await this.userRepository.findByEmail(data.email);
         if (existingUser) {
-            throw new Error("Email already in use");
+            throw new EmailAlreadyInUseError;
         }
 
         const passwordHash = await this.passwordHasher.hash(data.password);
