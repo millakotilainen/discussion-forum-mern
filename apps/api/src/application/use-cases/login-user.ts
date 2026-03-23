@@ -22,10 +22,15 @@ export class InvalidCredentialsError extends Error {
     }
 }
 
+export interface TokenService {
+   sign(payload: {userId: string; email: string}): Promise<string>;
+}
+
 export class LoginUser {
     constructor (
         private readonly userRepository: UserRepository,
-        private readonly passwordVerifier: PasswordVerifier
+        private readonly passwordVerifier: PasswordVerifier,
+        private readonly tokenService: TokenService
     ) {}
 
 
@@ -44,9 +49,11 @@ export class LoginUser {
         if (!passwordValid) {
             throw new InvalidCredentialsError();
         }
+
+        const token = await this.tokenService.sign({ userId: user.id, email: user.email });
        
         return{
-            token: "TODO_GENERATE_TOKEN",
+            token: token,
             user: {
                 id: user?.id,
                 username: user?.username,

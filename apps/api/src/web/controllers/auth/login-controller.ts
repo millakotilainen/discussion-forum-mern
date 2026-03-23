@@ -3,8 +3,9 @@ import { LoginRequestSchema } from "@forum/shared";
 import { LoginUser } from "src/application/use-cases/login-user";
 import mongoUserRepository from "src/infrastructure/repositories/mongo-user-repository";
 import bcryptPasswordVerifier from "src/infrastructure/security/bcrypt-password-verifier";
+import jwtTokenService from "src/infrastructure/security/jwt-token-service";
 
-const loginUser = new LoginUser(mongoUserRepository, bcryptPasswordVerifier);
+const loginUser = new LoginUser(mongoUserRepository, bcryptPasswordVerifier, jwtTokenService);
 
 export async function loginController(req: Request, res: Response, next: NextFunction){
     try {
