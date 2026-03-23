@@ -1,10 +1,10 @@
 import type { Request, Response, NextFunction } from "express";
 import { LoginRequestSchema } from "@forum/shared";
 import { LoginUser } from "src/application/use-cases/login-user";
-import inMemoryUserRepository from "src/infrastructure/dev/in-memory-user-repository";
+import mongoUserRepository from "src/infrastructure/repositories/mongo-user-repository";
 import tempVerifier from "src/infrastructure/dev/mock-password-verifier";
 
-const loginUser = new LoginUser(inMemoryUserRepository, tempVerifier);
+const loginUser = new LoginUser(mongoUserRepository, tempVerifier);
 
 export async function loginController(req: Request, res: Response, next: NextFunction){
     try {

@@ -1,10 +1,10 @@
 import type { Request, Response, NextFunction } from "express";
 import { RegisterRequestSchema } from "@forum/shared";
 import { RegisterUser } from "src/application/use-cases/register-user";
-import inMemoryUserRepository from "src/infrastructure/dev/in-memory-user-repository";
+import mongoUserRepository from "src/infrastructure/repositories/mongo-user-repository";
 import mockPasswordHasher from "src/infrastructure/dev/mock-password-hasher";
 
-const registerUser = new RegisterUser(inMemoryUserRepository, mockPasswordHasher);
+const registerUser = new RegisterUser(mongoUserRepository, mockPasswordHasher);
 
 export async function registerController(req: Request, res: Response, next: NextFunction) {
   try {
