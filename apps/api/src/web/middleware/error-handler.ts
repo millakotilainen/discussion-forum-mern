@@ -31,5 +31,5 @@ export function errorHandler(err: unknown, _req: Request, res: Response, _next: 
   }
   
   console.error(JSON.stringify({ msg: 'unhandled_error', err }));
-  res.status(500).json({ error: 'InternalServerError' });
+  return res.status(500).json({ error: 'InternalServerError' });
 }
