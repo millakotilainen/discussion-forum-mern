@@ -16,7 +16,10 @@
     "test": "(cd apps/api && npm run test) && (cd apps/web && npm run test)"
   },
   "devDependencies": {
-    "prettier": "^3.8.1"
+    "@tailwindcss/postcss": "^4.2.2",
+    "postcss": "^8.5.8",
+    "prettier": "^3.8.1",
+    "tailwindcss": "^4.2.2"
   },
   "keywords": [],
   "author": "",
